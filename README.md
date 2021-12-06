@@ -13,6 +13,19 @@ Literature Survey [Report](https://drive.google.com/file/d/11vb0aNbmLAiJf4WmARSg
 
 Final Report [Report](https://github.com/iVishalr/Bitcoin-Ransomware-Detection/blob/main/Bitcoin-Ransomware-Detection.pdf)
 
+## Crypto Ransomware
+
+Sophisticated malware that prevents users from accessing their data using encryption techniques until a ransom is paid to the attacker. 
+One of the most violent types - Entire department or company will come to a standstill even if just one machine is infected. 
+
+Machine Learning algorithms have been proposed to detect the Ransomware Bitcoin addresses, but they do not generalise enough to classify addresses belonging to different malware families. 
+
+## Objective
+
+Neural networks capture the information granularity at various layers which helps to detect ransomware addresses in a more generalized way.
+
+We propose a neural network model that performs slightly better compared to other models in metrics like Receiver Operating Characteristic (ROC), F1 score and accuracy.
+
 ## Dataset Description
 
 Dataset from the UCI BitcoinHeistRansomwareAddressDataset Data Set available at [link](http://archive.ics.uci.edu/ml/datasets/BitcoinHeistRansomwareAddressDataset)
@@ -44,3 +57,28 @@ Features :
 `income` : Integer. Satoshi amount (1 bitcoin = 100 million satoshis).
 
 `label` : Category String. Name of the ransomware family (e.g., Cryptxxx, cryptolocker etc) or white (i.e., not known to be ransomware).
+
+## Implementation
+
+Data preprocessing - 
+
+Irrelevant features like year, day, Bitcoin address were dropped since they do not add any value to the classification. 
+Log transformations were applied to convert highly right skewed features like the ones shown in the following image to normal distributions.
+
+The features still have some skewness is left, but we can’t apply further more transformations, since values become nan or zero and reduce our training set size, and since we have implemented neural networks, they perform poorly with less data. So we decided to work with a single log transformation.
+
+Model building -
+
+The dataset was divided into 80% train and 20% test splits. Various scaling techniques like StandardScaler, MinMaxScaler, RobustScaler were applied to both the train and test data to scale them down appropriately.
+Supervised classification machine learning models were applied like logistic regression, KNN, SVM, Decision Tree, Random Forest, AdaBoost, XGBoost, Neural Networks.
+
+## Evaluation
+
+As a part of evaluation we have used accuracy, recalll, precision, f1 score and roc score metrics to compare amongst the models.
+
+For comparison of the model performance we used ROC metric and plotted the ROC Graph. Here u can see all the models are better than a random classifier, and neural netwroks have a sligh better score than other algorithms. This score can be imporved if we had more balanced data, since neural netwroks outperform other models when more training data is available.
+
+
+
+
+
